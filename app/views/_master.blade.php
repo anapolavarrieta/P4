@@ -15,8 +15,12 @@
 				<a href='/' ><img src= "{{URL::asset('/images/logo.png')}}" alt="PaketeAlivianes Logo"/></a>
 			</div>
 			<div class="col-md-2">
-				<p> <a href='/login'> Login </a><p>
-				<p> <a href='/signup'>Crea una cuenta </a></p>
+				@if (Auth::check())
+					<p> <a href='/logout'> Cerrar Sesión {{Auth::user()->name;}} </a></p>
+				@else
+					<p> <a href='/login'> Login </a><p>
+					<p> <a href='/signup'>Crea una cuenta </a></p>
+				@endif
 			</div>
 		</div>
 		<div class="navbar navbar-default" role="navigation">
@@ -39,9 +43,15 @@
         	  	</ul>
         	</div>
       	</div>
+
+      	@if (Session::get('flash_message'))
+      		<div class='flash_message'>{{Session::get('flash_message')}}</div>
+      	@endif
+
+      	@yield('content')
 	</div>
 
-	@yield('content')
+	
 	@yield('body')
 	@yield ('footer')
 
