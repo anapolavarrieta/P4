@@ -6,6 +6,8 @@
 	<meta charset="utf-8">
 	<link href="css//Bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css" type="text/css"> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+	<script src="css/Bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -18,7 +20,7 @@
 				@if (Auth::check())
 					<p> <a href='/logout'> Cerrar Sesión {{Auth::user()->name;}} </a></p>
 				@else
-					<p> <a href='/login'> Login </a><p>
+					<p> <a href='/login'> Iniciar Sesión </a><p>
 					<p> <a href='/signup'>Crea una cuenta </a></p>
 				@endif
 			</div>
