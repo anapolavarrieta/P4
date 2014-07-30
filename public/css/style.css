@@ -1,0 +1,40 @@
+img{
+	height: 100px;
+}
+
+.col-md-2{
+	padding-top:3%;
+}
+
+
+div.navbar{
+	background-color: #F29B4E ;
+	text-align: center;
+}
+
+.navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus{
+	color: #327FB2;
+	font-weight:bold;
+	font-size:150%;
+	background-color: #F29B4E;
+}
+
+.navbar-default .navbar-nav>li>a{
+	color: white;
+	font-weight:bold;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+	color: #327FB2;
+	font-weight:bold;
+}
+
+
+
