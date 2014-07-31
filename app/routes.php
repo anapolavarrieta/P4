@@ -98,14 +98,14 @@ Route::post('/login',
 			$credentials= Input::only('email', 'password');
 
 			if(Auth::attempt($credentials, $remember=true)){
-				return Redirect::intended('/')
+				return Redirect::intended('/user_home')
 						-> with('flash_message', 'Bienvenido!');
 			}
 			else{
 				return Redirect::to('/login')
 						->with('flash_message','No se ha podido conectar, por favor intente nuevamente');
 			}
-			return Redirect::to('login');
+			return Redirect::to('user_home');
 		}
 	)
 );
@@ -114,6 +114,41 @@ Route::get('/logout', function()
 {
 	Auth::logout();
 	return Redirect::to('/');
+});
+
+Route::get('/user_home',
+	array(
+		'before'=>'auth',
+		 function(){
+			return View::make('user_home');
+		}
+	)
+);
+
+Route::post('/entry',function()
+{
+	
+	$register=new Register();
+	$ip= $register->get_IP();
+	$register->ip=$ip;
+	$register->type='entry';
+	$register->user_id= Auth::id();
+	$register->save();
+	 
+ 	return View::make('entry');
+});
+
+Route::post('/exit',function()
+{
+	
+	$register=new Register();
+	$ip= $register->get_IP();
+	$register->ip=$ip;
+	$register->type='exit';
+	$register->user()->associate(Auth::id());
+	$register->save();
+	 
+ 	return View::make('exit');
 });
 
 Route::get('mysql-test', function() {
@@ -125,15 +160,6 @@ Route::get('mysql-test', function() {
     return Pre::render($results);
 
 });
-
-Route::get('/user_home',
-	array(
-		'before'=>'auth',
-		 function(){
-			return View::make('user_home');
-		}
-	)
-);
 
 Route::get('/debug', function() {
 

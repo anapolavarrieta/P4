@@ -18,7 +18,8 @@
 			</div>
 			<div class="col-md-2">
 				@if (Auth::check())
-					<p> <a href='/logout'> Cerrar Sesión {{Auth::user()->name;}} </a></p>
+					<p> <a href='/logout'> Cerrar Sesión </a></p>
+					<p> {{Auth::user()->name;}} </p>
 				@else
 					<p> <a href='/login'> Iniciar Sesión </a><p>
 					<p> <a href='/signup'>Crea una cuenta </a></p>
@@ -41,16 +42,27 @@
             		<li id="navpart3"><a href='/hacemos'>Que hacemos</a></li>
             		<li id="navpart4"><a href='/galeria'>Galeria</a></li>
 					<li id="navpart5"><a href='/experiencias'>Experiencias</a></li>
-					<li id="navpart5"><a href='/contacto'>Contacto</a></li>		
-        	  	</ul>
-        	</div>
+					<li id="navpart5"><a href='/contacto'>Contacto</a></li>
+				</ul>
+				<br>
+					@if (Auth::check())
+						<ul class="nav navbar-nav">
+							<li clas="userlist"><a class="user" href='/user_home'>Registro de Horas </a></li>
+							<li clas="userlist"><a class="user" href='/project'>Proyecto</a></li>
+           					<li clas="userlist"><a class="user" href='/experience'>Experiencia</a></li>
+           				</ul>
+					@endif
+	       	</div>
       	</div>
+
+      	@yield('content')
+      	
 
       	@if (Session::get('flash_message'))
       		<div class='flash_message'>{{Session::get('flash_message')}}</div>
       	@endif
 
-      	@yield('content')
+      	
 	</div>
 
 	
