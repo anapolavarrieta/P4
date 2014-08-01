@@ -6,10 +6,10 @@ return array(
 
         'mysql' => array(
             'driver'    => 'mysql',
-            'host'      => '127.8.212.130',
+            'host'      => 'tunnel.pagodabox.com:3306',
             'database'  => 'p4',
-            'username'  => 'adminr87ucKY',
-            'password'  => '2DBiLVZgCUGc',
+            'username'  => 'norene',
+            'password'  => 'vNQhV9Pw',
         ),
 
     ),
