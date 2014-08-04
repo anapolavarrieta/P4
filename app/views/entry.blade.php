@@ -6,6 +6,7 @@
 
 	@section('content')
 		<h1> Se ha registrado tu entrada </h1>
+		<p> {{$ip}} </p>
 
 	@stop
 @stop

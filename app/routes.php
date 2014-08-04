@@ -135,7 +135,7 @@ Route::post('/entry',function()
 	$register->user_id= Auth::id();
 	$register->save();
 	 
- 	return View::make('entry');
+ 	return View::make('entry')->with('ip',$ip);
 });
 
 Route::post('/exit',function()
