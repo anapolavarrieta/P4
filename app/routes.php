@@ -177,7 +177,7 @@ Route::post('/exit',function()
 	$register=new Register();
 	$register->latitude=Input::get('latitude2');
 	$register->longitude=Input::get('longitude2');
-	if(($register->latitude <= 42.35) && ($register->latitude>=42.33) && ($register->longitude <=-71.13) && ($register->longitude>= -71.15)){
+	if(($register->latitude <= 42.38) && ($register->latitude>=42.36) && ($register->longitude <=-71.10) && ($register->longitude>= -71.12)){
 			$register->type='exit';
 	}
 	elseif($register->latitude == 0 && $register->longitude == 0){
