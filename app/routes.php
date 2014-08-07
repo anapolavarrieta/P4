@@ -155,7 +155,7 @@ Route::post('/entry',function()
 	$register=new Register();
 	$register->latitude=Input::get('latitude');
 	$register->longitude=Input::get('longitude');
-	if(($register->latitude <= 42.35) && ($register->latitude>=42.33) && ($register->longitude <=-71.13) && ($register->longitude>= -71.15)){
+	if(($register->latitude <= 42.38) && ($register->latitude>=42.36) && ($register->longitude <=-71.10) && ($register->longitude>= -71.12)){
 		$register->type='entry';
 	}
 	elseif($register->latitude == 0 && $register->longitude == 0){
@@ -168,7 +168,7 @@ Route::post('/entry',function()
 	$register->time= date("G:i:s");
 	$register->user()->associate($user);
 	$register->save(); 
- 	return View::make('entry')->with ('date', $register->date);
+ 	return View::make('entry')->with ('date', $register->date)->with ('latitude',$register->latitude)->with('longitude', $register->longitude);
 });
 
 Route::post('/exit',function()
