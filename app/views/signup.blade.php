@@ -4,7 +4,11 @@
 	@stop
 
 	@section ('content')
+		@foreach($errors->all() as $message) 
+			<div class='error'>{{ $message }}</div>
+		@endforeach
 		<h1> Crea tu cuenta </h1>
+		
 		{{ Form::open(array('url'=>'/signup'))}}
 			{{Form::label('email','Email:')}}
 			{{Form::text('email')}}

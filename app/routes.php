@@ -55,6 +55,22 @@ Route::post('/signup',
 	array(
 		'before'=>'csrf',
 		function(){
+			$rules =array(
+				'email'=> 'required|email|unique:users,email',
+				'password' => 'required|min:5',
+				'name'=> 'min:3',
+				'last_name'=> 'min:3',
+				'university_id' => 'integer'
+			);
+
+			$validator= Validator::make(Input::all(), $rules);
+			if($validator->fails()){
+				return Redirect::to('/signup')
+								->with('flash_message', 'No se pudo crear la cuenta. Favor de corregir los siguientes errores')
+								->withInput()
+								->withErrors($validator);
+			}
+
 			$user=new User;
 			$user->email = Input::get('email');
 			$user->password = Hash::make(Input::get('password'));
@@ -98,9 +114,16 @@ Route::post('/login',
 		function(){
 			$credentials= Input::only('email', 'password');
 
-			if(Auth::attempt($credentials, $remember=true)){
-				return Redirect::intended('/user_home')
-						-> with('flash_message', 'Bienvenido!');
+			if(Auth::attempt($credentials, $remember=true)) {
+				$user= User::find(Auth::id());
+				if($user->admin !=1){
+					return Redirect::intended('/user_home')
+							-> with('flash_message', 'Bienvenido!');
+				}
+				else{
+					return Redirect::to('/admin')
+							->with('flash_message', 'Bienvenido');
+				}
 			}
 			else{
 				return Redirect::to('/login')
@@ -172,7 +195,7 @@ Route::post('/exit',function()
 
 Route::get('/admin',
 	array(
-		'before'=>'auth|admin',
+		'before'=>'aut|admin',
 		 function(){
 		 		$users= User::all();
 		 		return View::make('admin')->with('users',$users);
@@ -215,7 +238,7 @@ Route::get('/userhours/{id}',
 Route::get('/edit_user/{id}', 
 	array(
 		'as'=>'user.update',
-		'before'=>'auth|admin',
+		'before'=>'auth',
 		function($id){
 			$user= User::findOrFail($id);
 			return View::make('edit_user')
