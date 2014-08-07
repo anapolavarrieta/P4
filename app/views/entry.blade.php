@@ -6,7 +6,7 @@
 
 	@section('content')
 		<h1> Se ha registrado tu entrada </h1>
-		<p> {{$ip}} </p>
-
+		<p> <a href="/user_home"> Regresar Registro Horas </a></p>
+		{{ $date}}
 	@stop
 @stop

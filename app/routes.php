@@ -10,6 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+date_default_timezone_set ("America/New_York");
 
 Route::get('/', function()
 {
@@ -127,29 +128,131 @@ Route::get('/user_home',
 
 Route::post('/entry',function()
 {
-	
+	$user= User::find(Auth::id());
 	$register=new Register();
-	$ip= $register->get_IP();
-	$register->ip=$ip;
-	$register->type='entry';
-	$register->user_id= Auth::id();
-	$register->save();
-	 
- 	return View::make('entry')->with('ip',$ip);
+	$register->latitude=Input::get('latitude');
+	$register->longitude=Input::get('longitude');
+	if(($register->latitude <= 42.35) && ($register->latitude>=42.33) && ($register->longitude <=-71.13) && ($register->longitude>= -71.15)){
+		$register->type='entry';
+	}
+	elseif($register->latitude == 0 && $register->longitude == 0){
+		$register->type='error en direccion';
+	}
+	else{
+		$register->type='other_entry';
+	}
+	$register->date= date("Y-m-d");
+	$register->time= date("G:i:s");
+	$register->user()->associate($user);
+	$register->save(); 
+ 	return View::make('entry')->with ('date', $register->date);
 });
 
 Route::post('/exit',function()
 {
-	
+	$user= User::find(Auth::id());
 	$register=new Register();
-	$ip= $register->get_IP();
-	$register->ip=$ip;
-	$register->type='exit';
-	$register->user()->associate(Auth::id());
-	$register->save();
-	 
+	$register->latitude=Input::get('latitude2');
+	$register->longitude=Input::get('longitude2');
+	if(($register->latitude <= 42.35) && ($register->latitude>=42.33) && ($register->longitude <=-71.13) && ($register->longitude>= -71.15)){
+			$register->type='exit';
+	}
+	elseif($register->latitude == 0 && $register->longitude == 0){
+		$register->type='error en direccion';
+	}
+	else{
+		$register->type='other_exit';
+	}
+	$register->date= date("Y-m-d");
+	$register->time= date("G:i:s");
+	$register->user()->associate($user);
+	$register->save(); 
  	return View::make('exit');
 });
+
+Route::get('/admin',
+	array(
+		'before'=>'auth|admin',
+		 function(){
+		 		$users= User::all();
+		 		return View::make('admin')->with('users',$users);
+			}
+	)
+);
+
+Route::get('/users_hours',
+	array(
+		'before'=>'auth|admin',
+		function(){
+			$users= User::all();
+			return View::make('users_hours')->with('users',$users);
+		}
+	)
+);
+
+Route::get('/userhours/{id}', 
+	array(
+		'before'=>'auth|admin',
+		function($id){
+			$user= User::findOrFail($id);
+			$first_reg= $user->register()->first();
+			try{
+				$date1= $first_reg->date;
+				$hour1= $first_reg->time;
+				return View::make('userhours')
+						->with('user', $user)
+						->with('date1', $date1)
+						->with ('hour1', $hour1);
+			}
+			catch (Exception $e){
+				return Redirect::to('/users_hours')
+					->with('flash_message','El usuario no tiene registros');
+			}
+		}
+	)
+);
+
+Route::get('/edit_user/{id}', 
+	array(
+		'as'=>'user.update',
+		'before'=>'auth|admin',
+		function($id){
+			$user= User::findOrFail($id);
+			return View::make('edit_user')
+					->with('user', $user);
+		}
+	)
+);
+
+Route::post('/edit_user/{id}',
+	array(
+		'before'=>'csrf',
+		function($id){
+			$user=User::findorFail($id);
+			$user->fill(Input::all());
+			$user->save();
+			return Redirect::to('/admin')
+							->with('flash_message','Los cambios se han guardado');
+		}
+	)
+);
+
+Route::get('/delete_user/{id}', 
+	array(
+		'before'=>'auth|admin',
+		function($id){
+			$user= User::findOrFail($id);
+			foreach($user->register as $register){
+				$register->delete();
+			}
+			$user->delete();
+			return Redirect::to('/admin')
+						->with('flash_message','El usuario se ha eliminado');
+
+		}
+	)
+);
+
 
 Route::get('mysql-test', function() {
 

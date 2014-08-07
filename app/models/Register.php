@@ -6,17 +6,8 @@ class Register extends Eloquent{
 		return $this->belongsTo('User');
 	}
 
-	public function get_IP(){
-		$ip= $_SERVER['REMOTE_ADDR'];
- 
-    	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-    	    $this->ip = $_SERVER['HTTP_CLIENT_IP'];
-   		} 
-    	elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        	$this->ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    	}
-
-    	return $ip;
+    public function create_entrytable($user){
+        
     }
 
  }

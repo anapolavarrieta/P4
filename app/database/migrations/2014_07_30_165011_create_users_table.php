@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration {
 			$table->integer('university_id');
 			$table->string('major');
 			$table->integer('semester');
+			$table->boolean('admin');
 			$table->timestamps();			
 		});
 

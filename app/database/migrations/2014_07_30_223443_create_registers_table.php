@@ -14,7 +14,10 @@ class CreateRegistersTable extends Migration {
 	{
 		Schema::create('registers',function($table){
 			$table->increments('id');
-			$table->string('ip');
+			$table->integer('latitude');
+			$table->integer('longitude');
+			$table->date('date');
+			$table->time('time');
 			$table->string('type');
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
@@ -29,7 +32,12 @@ class CreateRegistersTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('registers', function($table) {
+			$table->dropForeign('registers_user_id_foreign'); 
+		});
+
 		Schema::drop('registers');
+
 	}
 
 }

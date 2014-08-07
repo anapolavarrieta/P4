@@ -4,10 +4,10 @@
 <head>
 	<title>@yield ('title', 'PaketeAlivianes')</title>
 	<meta charset="utf-8">
-	<link href="css//Bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/style.css" type="text/css"> 
+	<link href="{{URL::asset('/css/Bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+	<link rel="stylesheet" href="{{URL::asset('/css/style.css')}}" type="text/css"> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
-	<script src="css/Bootstrap/js/bootstrap.min.js"></script>
+	<script src="{{URL::asset('/css/Bootstrap/js/bootstrap.min.js')}}"></script>
 </head>
 
 <body>
@@ -46,21 +46,36 @@
 				</ul>
 				<br>
 					@if (Auth::check())
-						<ul class="nav navbar-nav">
-							<li clas="userlist"><a class="user" href='/user_home'>Registro de Horas </a></li>
-							<li clas="userlist"><a class="user" href='/project'>Proyecto</a></li>
-           					<li clas="userlist"><a class="user" href='/experience'>Experiencia</a></li>
-           				</ul>
+						@if(Auth::user()->admin==1)
+							<ul class="nav navbar-nav">
+								<li clas="userlist"><a class="user" href='/admin'>Lista usuarios </a></li>
+								<li clas="userlist"><a class="user" href='/users_hours'>Horas de usuarios</a></li>
+           						<li clas="userlist"><a class="user" href='/pages'>Paginas</a></li>
+           					</ul>
+           				@else
+							<ul class="nav navbar-nav">
+								<li clas="userlist"><a class="user" href='/user_home'>Registro de Horas </a></li>
+								<li clas="userlist"><a class="user" href='/project'>Proyecto</a></li>
+           						<li clas="userlist"><a class="user" href='/experience'>Experiencia</a></li>
+           					</ul>
+           				@endif
 					@endif
-	       	</div>
+		  	</div>
       	</div>
 
+      	@if (Session::get('flash_message'))
+      		<div class="alert alert-info" role="alert">
+      			<button type="button" class="close" data-dismiss="alert">&times;</button>
+      			{{Session::get('flash_message')}}
+      		</div>
+      	@endif
+      	<br>
+      	
       	@yield('content')
       	
 
-      	@if (Session::get('flash_message'))
-      		<div class='flash_message'>{{Session::get('flash_message')}}</div>
-      	@endif
+      	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      	 <script src="/js/getlocation.js"></script>
 
       	
 	</div>
