@@ -215,7 +215,7 @@ Route::get('/userhours/{id}',
 Route::get('/edit_user/{id}', 
 	array(
 		'as'=>'user.update',
-		'before'=>'auth',
+		'before'=>'auth|admin',
 		function($id){
 			$user= User::findOrFail($id);
 			return View::make('edit_user')
