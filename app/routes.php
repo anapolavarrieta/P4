@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-date_default_timezone_set ("America/New_York");
+date_default_timezone_set ("America/Mexico_City");
 
 Route::get('/', function()
 {
@@ -29,7 +29,7 @@ Route::get('/hacemos', function()
 
 Route::get('/galeria', function()
 {
-	return View::make('galeria');
+	return View::make('underconstruction');
 });
 
 Route::get('/experiencias', function()
@@ -41,6 +41,37 @@ Route::get('/contacto', function()
 {
 	return View::make('contacto');
 });
+
+Route::post('/contacto',
+	array(
+	'before'=>'csrf',
+	function(){
+		$name= Input::get('client');
+		$email= Input::get('email');
+		$phone= Input::get('phone');
+		$message=Input::get('message');
+		
+		$user= array(
+			'email'=>$email,
+			'name'=>$name,
+		);
+
+		$data = array(
+			'email'=>$email,
+			'name'=>$name,
+			'phone'=>$phone,
+			'detail'=>$message
+		);
+
+		Mail::send('mailcontacto', $data, function($message) use($data)
+		{
+			$message->to('anapolavarrieta@gmail.com', 'Ana Paula')
+					->subject('Nueva información de contacto');
+		});
+
+		return View::make('gracias');
+	})
+);
 
 Route::get('/signup',
 	array(
@@ -140,6 +171,26 @@ Route::get('/logout', function()
 	return Redirect::to('/');
 });
 
+Route::get('password/reset', array(
+  'uses' => 'RemindersController@getRemind',
+  'as' => 'passwordremind'
+));
+
+Route::post('password/reset', array(
+  'uses' => 'RemindersController@postRemind',
+  'as' => 'passwordrequest'
+));
+
+Route::get('password/reset/{token}', array(
+  'uses' => 'RemindersController@getReset',
+  'as' => 'password.reset'
+));
+
+Route::post('password/reset/{token}', array(
+  'uses' => 'RemindersController@postReset',
+  'as' => 'password.update'
+));
+
 Route::get('/user_home',
 	array(
 		'before'=>'auth',
@@ -155,11 +206,13 @@ Route::post('/entry',function()
 	$register=new Register();
 	$register->latitude=Input::get('latitude');
 	$register->longitude=Input::get('longitude');
+	$flag= "Se ha registrado tu entrada";
 	if(($register->latitude <= 42.38) && ($register->latitude>=42.36) && ($register->longitude <=-71.10) && ($register->longitude>= -71.12)){
 		$register->type='entry';
 	}
 	elseif($register->latitude == 0 && $register->longitude == 0){
 		$register->type='error en direccion';
+		$flag= "Para poder registrar tu entrada es necesario habilitar la opción Share Location";
 	}
 	else{
 		$register->type='other_entry';
@@ -168,7 +221,7 @@ Route::post('/entry',function()
 	$register->time= date("G:i:s");
 	$register->user()->associate($user);
 	$register->save(); 
- 	return View::make('entry')->with ('date', $register->date)->with ('latitude',$register->latitude)->with('longitude', $register->longitude);
+ 	return View::make('entry')->with ('flag', $flag);
 });
 
 Route::post('/exit',function()
@@ -177,11 +230,13 @@ Route::post('/exit',function()
 	$register=new Register();
 	$register->latitude=Input::get('latitude2');
 	$register->longitude=Input::get('longitude2');
+	$flag= "Se ha registrado tu salida";
 	if(($register->latitude <= 42.38) && ($register->latitude>=42.36) && ($register->longitude <=-71.10) && ($register->longitude>= -71.12)){
 			$register->type='exit';
 	}
 	elseif($register->latitude == 0 && $register->longitude == 0){
 		$register->type='error en direccion';
+		$flag= "Para poder registrar tu salida es necesario habilitar la opción Share Location";
 	}
 	else{
 		$register->type='other_exit';
@@ -190,7 +245,12 @@ Route::post('/exit',function()
 	$register->time= date("G:i:s");
 	$register->user()->associate($user);
 	$register->save(); 
- 	return View::make('exit');
+ 	return View::make('exit')->with ('flag', $flag);
+});
+
+Route::get('/proyecto', function()
+{
+	return View::make('underconstruction');
 });
 
 Route::get('/admin',

@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<link href="{{URL::asset('/css/Bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link rel="stylesheet" href="{{URL::asset('/css/style.css')}}" type="text/css"> 
+	<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
 	<script src="{{URL::asset('/css/Bootstrap/js/bootstrap.min.js')}}"></script>
 </head>
@@ -44,7 +45,7 @@
 					<li id="navpart5"><a href='/experiencias'>Experiencias</a></li>
 					<li id="navpart5"><a href='/contacto'>Contacto</a></li>
 				</ul>
-				<br>
+				<hr>
 					@if (Auth::check())
 						@if(Auth::user()->admin==1)
 							<ul class="nav navbar-nav">
@@ -55,9 +56,8 @@
            				@else
 							<ul class="nav navbar-nav">
 								<li clas="userlist"><a class="user" href='/user_home'>Registro de Horas </a></li>
-								<li clas="userlist"><a class="user" href='/project'>Proyecto</a></li>
-           						<li clas="userlist"><a class="user" href='/experience'>Experiencia</a></li>
-           					</ul>
+								<li clas="userlist"><a class="user" href='/proyecto'>Proyecto</a></li>
+	          				</ul>
            				@endif
 					@endif
 		  	</div>

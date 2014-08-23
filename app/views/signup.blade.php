@@ -7,11 +7,11 @@
 		@foreach($errors->all() as $message) 
 			<div class='error'>{{ $message }}</div>
 		@endforeach
-		<h1> Crea tu cuenta </h1>
+		<h1 id="h1user"> Crea tu cuenta </h1>
 		
-		{{ Form::open(array('url'=>'/signup'))}}
+		{{ Form::open(array('url'=>'/signup', 'id'=>'auth'))}}
 			{{Form::label('email','Email:')}}
-			{{Form::text('email')}}
+			{{Form::email('email')}}
 			<br><br>
 			{{Form::label('password', 'Password:')}}
 			{{Form::password('password')}}

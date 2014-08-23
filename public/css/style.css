@@ -1,12 +1,25 @@
+body{
+	background: url(../images/cream_pixels.png) repeat 0 0;
+	color:black;
+}
+
+/*logo*/
 img{
 	height: 100px;
 }
+/*end of logo*/
 
+img#undconst{
+	height:100%;
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+}
 .col-md-2{
 	padding-top:3%;
 }
 
-
+/*nav bar*/
 div.navbar{
 	background-color: #F29B4E ;
 	text-align: center;
@@ -44,4 +57,92 @@ div.navbar{
 	color: white;
 	font-weight:bold;
 }
+/*end of navbar*/
+
+/*line in navbar*/
+hr{
+	margin-top:0px;
+	margin-bottom:0px;
+}
+/*end of line in navbar*/
+
+/*font in webpage*/
+h1, h2, h3, h4, h5, h6, p, div{
+	font-family: 'Nobile', Helvetica, Arial, sans-serif;
+}
+/*end of fonts*/
+
+h2{
+	padding-left:8%;
+}
+
+h2#contacto{
+	text-align: center;
+}
+
+h1#h1user{
+	padding-left:5%;
+}
+
+h1#registro{
+	text-align: center;
+}
+
+
+p#plaintext{
+	text-indent:3%;
+	padding-left:10%;
+	padding-right:10%;
+}
+
+p#gracias{
+	text-align: center;
+	font-size:20px;
+}
+
+p#pregistro{
+	text-align:center;
+}
+
+/*accordion style*/
+div#accordion.panel-group{
+	padding-left:10%;
+	padding-right:10%;
+}
+
+.panel-default{
+	border-color:#327FB2;
+}
+
+.panel-default>.panel-heading{
+	background-image:url(../images/cream_pixels.png);
+}
+
+.panel-group .panel{
+	margin-bottom:2%;
+}
+/*end of accordion styñle*/
+
+/*form style*/
+label, textarea{
+	display:block;
+}
+
+form#auth{
+	padding-left: 10%;
+}
+/*end form style*/
+
+/*alert style*/
+.alert-info{
+	text-align: center;
+}
+/*end alert style*/
+
+div#registros{
+	text-align: center;
+}
+
+
+
 

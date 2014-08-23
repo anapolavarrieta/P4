@@ -4,8 +4,8 @@
 	@stop
 
 	@section ('content')
-		<h1> Log in </h1>
-		{{Form::open(array('url'=>'login'))}}
+		<h1 id="h1user"> Log in </h1>
+		{{Form::open(array('url'=>'login', 'id'=>'auth'))}}
 			{{Form::label('email','Email:')}}
 			{{Form::text('email')}}
 			<br><br>
