@@ -207,7 +207,7 @@ Route::post('/entry',function()
 	$register->latitude=Input::get('latitude');
 	$register->longitude=Input::get('longitude');
 	$flag= "Se ha registrado tu entrada";
-	if(($register->latitude <= 42.38) && ($register->latitude>=42.36) && ($register->longitude <=-71.10) && ($register->longitude>= -71.12)){
+	if(($register->latitude <= 19.29) && ($register->latitude>=19.27) && ($register->longitude <=-99.15) && ($register->longitude>= -99.17)){
 		$register->type='entry';
 	}
 	elseif($register->latitude == 0 && $register->longitude == 0){
@@ -231,7 +231,7 @@ Route::post('/exit',function()
 	$register->latitude=Input::get('latitude2');
 	$register->longitude=Input::get('longitude2');
 	$flag= "Se ha registrado tu salida";
-	if(($register->latitude <= 42.38) && ($register->latitude>=42.36) && ($register->longitude <=-71.10) && ($register->longitude>= -71.12)){
+	if(($register->latitude <= 19.29) && ($register->latitude>=19.27) && ($register->longitude <=-99.15) && ($register->longitude>= -99.17)){
 			$register->type='exit';
 	}
 	elseif($register->latitude == 0 && $register->longitude == 0){
@@ -335,6 +335,11 @@ Route::get('/delete_user/{id}',
 		}
 	)
 );
+
+Route::get('/paginas', function()
+{
+	return View::make('paginas');
+});
 
 
 Route::get('mysql-test', function() {

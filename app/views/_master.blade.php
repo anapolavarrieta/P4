@@ -45,13 +45,13 @@
 					<li id="navpart5"><a href='/experiencias'>Experiencias</a></li>
 					<li id="navpart5"><a href='/contacto'>Contacto</a></li>
 				</ul>
-				<hr>
 					@if (Auth::check())
+						<hr>
 						@if(Auth::user()->admin==1)
 							<ul class="nav navbar-nav">
 								<li clas="userlist"><a class="user" href='/admin'>Lista usuarios </a></li>
 								<li clas="userlist"><a class="user" href='/users_hours'>Horas de usuarios</a></li>
-           						<li clas="userlist"><a class="user" href='/pages'>Paginas</a></li>
+           						<li clas="userlist"><a class="user" href='/paginas'>Paginas</a></li>
            					</ul>
            				@else
 							<ul class="nav navbar-nav">
