@@ -44,7 +44,7 @@ Route::get('/contacto', function()
 
 Route::post('/contacto',
 	array(
-	'before'=>'csrf',
+	
 	function(){
 		$name= Input::get('client');
 		$email= Input::get('email');
