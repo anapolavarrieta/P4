@@ -44,7 +44,6 @@ Route::get('/contacto', function()
 
 Route::post('/contacto',
 	array(
-	
 	function(){
 		$name= Input::get('client');
 		$email= Input::get('email');
