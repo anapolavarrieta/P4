@@ -29,7 +29,7 @@ Route::get('/hacemos', function()
 
 Route::get('/galeria', function()
 {
-	return View::make('underconstruction');
+	return View::make('galeria');
 });
 
 Route::get('/experiencias', function()

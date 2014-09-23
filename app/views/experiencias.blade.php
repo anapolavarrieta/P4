@@ -12,7 +12,7 @@
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-							Daniela Frey Cosio Salazar 
+							Daniela 
 						</a>
 					</h4>
 				</div>
@@ -60,13 +60,27 @@
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-							Jimena 
+							Ana Luisa 
 						</a>
 					</h4>
 				</div>
 				<div id="collapseTwo" class="panel-collapse collapse">
 					<div class="panel-body">
-						<p class="text-justify">Mi experiencia en Paketealivianes</p>
+						<p class="text-justify"> Mi experiencia en el INCAN fue muy satisfactoria, superó por mucho mis espectativas, ya que yo iba con la inteción de ayudar a las 
+						personas, pero creo que fueron ellas quienes me ayudaron a mí. El personal del hospital siempre fue muy amable y me recibió con una sonrisa, al igual que los 
+						pacientes, quienes parecen apreciar mucho el servicio que les brinda el programa "Paketealivianes". </p>
+						<p class="text-justify">Creo que lo más gratificante de esta experiencia fue el poder acercarme a la gente y permitir que me contagiaran su buena actitud y 
+						alegría ante las situaciones adversas que nos presenta la vida; me siento orgullosa de poder decir que de esta experiencia me llevo más que una carta de 
+						liberación del servicio social; me llevo muchas buenas conversaciones con gente de vivencias diferentes, me quedo con un crecimiento como ser humano, e 
+						incluso me llevo una amiga. Durante mi servcio tuve la fortuna de conocer a la señora Rosa María, quien cada semana me recibía con gran alegría y me contaba 
+						de su situación, de sus hijos, de su esposo y de la casa que acababan de comprarse, me fui encariñando con ella y fui viendo como semana con semana la quimio 
+						y el cáncer desgastaban su cuerpo, pero nunca su sonrisa; ella siempre se mantuvo positiva. Cuando llegó su última quimio me agradeció por todos los días que 
+						pasamos juntas, e intercambiamos teléfonos para seguir en contacto. Me escribió unos días antes de que la operaran y yo le envié todas mis bendiciones. 
+						Afortunadamente todo salió bien, y ahora se encuentra en recuperación; seguimos en contacto y realmente le tengo un aprecio sincero. </p>
+						<p class="text-justify">Me siento muy agradecida con el programa "Paketealivianes" por darme la oportunidad de conocer a gente tan maravillosa como esta mujer, 
+						entre muchas otras personas ejemplares que hicieron de estos meses una experiencia memorable. Creo que este es un verdadero servicio social, que me permitó 
+						involucrarme tanto con la gente como con esa parte humana de mí misma. </p>
+</p>
 					</div>
 				</div>
 			</div>
