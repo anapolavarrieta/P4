@@ -14,6 +14,7 @@
 						<th>Fecha </th>
 						<th>Hora </th>
 						<th>Tipo de registro </th>
+						<th>Coordenadas </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -27,7 +28,8 @@
 								<?php $flag=0; ?>
 							@endif
 							<td>{{$register->time}}</td>
-							<td>{{$register->type}}
+							<td>{{$register->type}}</td>
+							<td>{{$register->latitude}} y {{$register->longitude}}</td>
 						</tr>
 					@endforeach
 				</tbody>	
