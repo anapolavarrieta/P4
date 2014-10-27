@@ -203,13 +203,13 @@ Route::post('/entry',function()
 {
 	$user= User::find(Auth::id());
 	$register=new Register();
-	$register->latitude=Input::get('latitude');
-	$register->longitude=Input::get('longitude');
+	$register->lat=Input::get('latitude');
+	$register->lon=Input::get('longitude');
 	$flag= "Se ha registrado tu entrada";
-	if(($register->latitude <= 19.29) && ($register->latitude>=19.27) && ($register->longitude <=-99.15) && ($register->longitude>= -99.17)){
+	if(($register->lat <= 19.29) && ($register->lat>=19.27) && ($register->lon <=-99.15) && ($register->lon>= -99.17)){
 		$register->type='entry';
 	}
-	elseif($register->latitude == 0 && $register->longitude == 0){
+	elseif($register->lat == 0 && $register->lon == 0){
 		$register->type='error en direccion';
 		$flag= "Para poder registrar tu entrada es necesario habilitar la opción Share Location";
 	}
@@ -227,13 +227,13 @@ Route::post('/exit',function()
 {
 	$user= User::find(Auth::id());
 	$register=new Register();
-	$register->latitude=Input::get('latitude2');
-	$register->longitude=Input::get('longitude2');
+	$register->lat=Input::get('latitude2');
+	$register->lon=Input::get('longitude2');
 	$flag= "Se ha registrado tu salida";
-	if(($register->latitude <= 19.29) && ($register->latitude>=19.27) && ($register->longitude <=-99.15) && ($register->longitude>= -99.17)){
+	if(($register->lat <= 19.29) && ($register->lat>=19.27) && ($register->lon <=-99.15) && ($register->lon>= -99.17)){
 			$register->type='exit';
 	}
-	elseif($register->latitude == 0 && $register->longitude == 0){
+	elseif($register->lat == 0 && $register->lon == 0){
 		$register->type='error en direccion';
 		$flag= "Para poder registrar tu salida es necesario habilitar la opción Share Location";
 	}
@@ -284,7 +284,8 @@ Route::get('/userhours/{id}',
 				return View::make('userhours')
 						->with('user', $user)
 						->with('date1', $date1)
-						->with ('hour1', $hour1);
+						->with ('hour1', $hour1)
+						->with ('lat', $first_reg->lat);
 			}
 			catch (Exception $e){
 				return Redirect::to('/users_hours')

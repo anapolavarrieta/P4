@@ -29,11 +29,12 @@
 							@endif
 							<td>{{$register->time}}</td>
 							<td>{{$register->type}}</td>
-							<td>{{$register->latitude}} y {{$register->longitude}}</td>
+							<td>{{$register->lat}} y {{$register->lon}}</td>
 						</tr>
 					@endforeach
 				</tbody>	
 			</table>
+			<p> {{$lat}} </p>
 		</div>
 	@stop
 @stop
