@@ -206,7 +206,7 @@ Route::post('/entry',function()
 	$register->lat=Input::get('latitude');
 	$register->lon=Input::get('longitude');
 	$flag= "Se ha registrado tu entrada";
-	if(($register->lat <= 19.29) && ($register->lat>=19.27) && ($register->lon <=-99.15) && ($register->lon>= -99.17)){
+	if(($register->lat <= 19.30) && ($register->lat>=19.27) && ($register->lon <=-99.14) && ($register->lon>= -99.18)){
 		$register->type='entry';
 	}
 	elseif($register->lat == 0 && $register->lon == 0){
@@ -230,7 +230,7 @@ Route::post('/exit',function()
 	$register->lat=Input::get('latitude2');
 	$register->lon=Input::get('longitude2');
 	$flag= "Se ha registrado tu salida";
-	if(($register->lat <= 19.29) && ($register->lat>=19.27) && ($register->lon <=-99.15) && ($register->lon>= -99.17)){
+	if(($register->lat <= 19.29) && ($register->lat>=19.27) && ($register->lon <=-99.14) && ($register->lon>= -99.17)){
 			$register->type='exit';
 	}
 	elseif($register->lat == 0 && $register->lon == 0){
